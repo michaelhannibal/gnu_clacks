@@ -1,0 +1,16 @@
+{
+  "scope": "Warm/JIT and Flutter test-harness smoke observations only; not cold-start, FPS, battery or real-device benchmarks. Other tooling was active; no hard performance guarantee.",
+  "core_policy": {
+    "entries": 100,
+    "iterations": 20000,
+    "model_and_policy_construction_us": 9922,
+    "enabled_us_per_decision": 214.71875,
+    "disabled_us_per_decision": 0.4847
+  },
+  "example_layout": {
+    "samples": 5,
+    "warm_layout_median_us": 59319,
+    "warm_layout_max_us": 554349,
+    "idle_transient_callbacks": 0
+  }
+}

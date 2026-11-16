@@ -1,0 +1,10 @@
+name: gnu_clacks_workspace
+publish_to: none
+environment:
+  sdk: ^3.13.3
+workspace:
+  - packages/gnu_clacks_core
+  - packages/gnu_clacks_http
+  - packages/gnu_clacks_dio
+  - packages/gnu_clacks_flutter
+  - apps/gnu_clacks_example

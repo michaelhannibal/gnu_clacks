@@ -1,0 +1,502 @@
+{
+  "checked_at_utc": "2026-11-16T09:53:01.399812+00:00",
+  "scope": "Resolved hosted workspace dependencies, including development tools; SDKs and OS dependencies excluded. Known-advisory matches only, not a security guarantee.",
+  "packages": [
+    {
+      "package": "test",
+      "version": "1.31.1",
+      "url": "https://pub.dev/api/packages/test/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "yaml",
+      "version": "3.1.4",
+      "url": "https://pub.dev/api/packages/yaml/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "string_scanner",
+      "version": "1.4.1",
+      "url": "https://pub.dev/api/packages/string_scanner/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "source_span",
+      "version": "1.10.2",
+      "url": "https://pub.dev/api/packages/source_span/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "term_glyph",
+      "version": "1.2.2",
+      "url": "https://pub.dev/api/packages/term_glyph/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "path",
+      "version": "1.9.1",
+      "url": "https://pub.dev/api/packages/path/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "collection",
+      "version": "1.19.1",
+      "url": "https://pub.dev/api/packages/collection/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "webkit_inspection_protocol",
+      "version": "1.2.1",
+      "url": "https://pub.dev/api/packages/webkit_inspection_protocol/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "logging",
+      "version": "1.3.0",
+      "url": "https://pub.dev/api/packages/logging/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "web_socket_channel",
+      "version": "3.0.3",
+      "url": "https://pub.dev/api/packages/web_socket_channel/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "web_socket",
+      "version": "1.0.1",
+      "url": "https://pub.dev/api/packages/web_socket/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "web",
+      "version": "1.1.2",
+      "url": "https://pub.dev/api/packages/web/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "stream_channel",
+      "version": "2.1.4",
+      "url": "https://pub.dev/api/packages/stream_channel/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "async",
+      "version": "2.13.1",
+      "url": "https://pub.dev/api/packages/async/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "meta",
+      "version": "1.18.3",
+      "url": "https://pub.dev/api/packages/meta/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "crypto",
+      "version": "3.0.8",
+      "url": "https://pub.dev/api/packages/crypto/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "typed_data",
+      "version": "1.4.0",
+      "url": "https://pub.dev/api/packages/typed_data/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "test_core",
+      "version": "0.6.18",
+      "url": "https://pub.dev/api/packages/test_core/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "vm_service",
+      "version": "15.4.0",
+      "url": "https://pub.dev/api/packages/vm_service/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "test_api",
+      "version": "0.7.12",
+      "url": "https://pub.dev/api/packages/test_api/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "stack_trace",
+      "version": "1.12.2",
+      "url": "https://pub.dev/api/packages/stack_trace/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "boolean_selector",
+      "version": "2.1.2",
+      "url": "https://pub.dev/api/packages/boolean_selector/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "source_maps",
+      "version": "0.10.14",
+      "url": "https://pub.dev/api/packages/source_maps/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "source_map_stack_trace",
+      "version": "2.1.2",
+      "url": "https://pub.dev/api/packages/source_map_stack_trace/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "pool",
+      "version": "1.5.3",
+      "url": "https://pub.dev/api/packages/pool/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "package_config",
+      "version": "2.2.0",
+      "url": "https://pub.dev/api/packages/package_config/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "io",
+      "version": "1.1.0",
+      "url": "https://pub.dev/api/packages/io/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "glob",
+      "version": "2.2.0",
+      "url": "https://pub.dev/api/packages/glob/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "file",
+      "version": "7.0.1",
+      "url": "https://pub.dev/api/packages/file/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "frontend_server_client",
+      "version": "4.2.0",
+      "url": "https://pub.dev/api/packages/frontend_server_client/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "coverage",
+      "version": "1.16.0",
+      "url": "https://pub.dev/api/packages/coverage/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "cli_util",
+      "version": "0.6.0",
+      "url": "https://pub.dev/api/packages/cli_util/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "ffi",
+      "version": "2.2.0",
+      "url": "https://pub.dev/api/packages/ffi/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "cli_config",
+      "version": "0.2.0",
+      "url": "https://pub.dev/api/packages/cli_config/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "args",
+      "version": "2.7.0",
+      "url": "https://pub.dev/api/packages/args/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "analyzer",
+      "version": "13.3.0",
+      "url": "https://pub.dev/api/packages/analyzer/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "watcher",
+      "version": "1.2.1",
+      "url": "https://pub.dev/api/packages/watcher/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "pub_semver",
+      "version": "2.2.1",
+      "url": "https://pub.dev/api/packages/pub_semver/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "convert",
+      "version": "3.1.2",
+      "url": "https://pub.dev/api/packages/convert/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "_fe_analyzer_shared",
+      "version": "103.0.0",
+      "url": "https://pub.dev/api/packages/_fe_analyzer_shared/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "shelf_web_socket",
+      "version": "3.0.0",
+      "url": "https://pub.dev/api/packages/shelf_web_socket/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "shelf",
+      "version": "1.4.3",
+      "url": "https://pub.dev/api/packages/shelf/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "http_parser",
+      "version": "4.1.2",
+      "url": "https://pub.dev/api/packages/http_parser/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "shelf_static",
+      "version": "1.2.0",
+      "url": "https://pub.dev/api/packages/shelf_static/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "mime",
+      "version": "2.1.0",
+      "url": "https://pub.dev/api/packages/mime/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "shelf_packages_handler",
+      "version": "3.0.2",
+      "url": "https://pub.dev/api/packages/shelf_packages_handler/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "node_preamble",
+      "version": "2.0.2",
+      "url": "https://pub.dev/api/packages/node_preamble/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "matcher",
+      "version": "0.12.20",
+      "url": "https://pub.dev/api/packages/matcher/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "http_multi_server",
+      "version": "3.2.3",
+      "url": "https://pub.dev/api/packages/http_multi_server/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "lints",
+      "version": "6.1.0",
+      "url": "https://pub.dev/api/packages/lints/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "leak_tracker_flutter_testing",
+      "version": "3.0.10",
+      "url": "https://pub.dev/api/packages/leak_tracker_flutter_testing/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "leak_tracker_testing",
+      "version": "3.0.2",
+      "url": "https://pub.dev/api/packages/leak_tracker_testing/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "leak_tracker",
+      "version": "11.0.2",
+      "url": "https://pub.dev/api/packages/leak_tracker/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "clock",
+      "version": "1.1.3",
+      "url": "https://pub.dev/api/packages/clock/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "vector_math",
+      "version": "2.4.4",
+      "url": "https://pub.dev/api/packages/vector_math/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "material_color_utilities",
+      "version": "0.13.0",
+      "url": "https://pub.dev/api/packages/material_color_utilities/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "characters",
+      "version": "1.4.1",
+      "url": "https://pub.dev/api/packages/characters/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "fake_async",
+      "version": "1.3.3",
+      "url": "https://pub.dev/api/packages/fake_async/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "cupertino_icons",
+      "version": "1.0.9",
+      "url": "https://pub.dev/api/packages/cupertino_icons/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "dio",
+      "version": "5.11.1",
+      "url": "https://pub.dev/api/packages/dio/advisories",
+      "status": "checked",
+      "advisories_updated": "2026-05-04T16:03:47.124153Z",
+      "matching_advisories": []
+    },
+    {
+      "package": "dio_web_adapter",
+      "version": "2.2.2",
+      "url": "https://pub.dev/api/packages/dio_web_adapter/advisories",
+      "status": "checked",
+      "advisories_updated": "1970-01-01T00:00:00.000",
+      "matching_advisories": []
+    },
+    {
+      "package": "http",
+      "version": "1.6.0",
+      "url": "https://pub.dev/api/packages/http/advisories",
+      "status": "checked",
+      "advisories_updated": "2026-05-04T16:03:47.124153Z",
+      "matching_advisories": []
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+name: gnu_clacks_example
+description: Local-only GNU Clacks package integration demonstration with fictional memorials.
+version: 0.1.0+1
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.13.3
+  flutter: '>=3.47.4'
+dependencies:
+  flutter:
+    sdk: flutter
+  gnu_clacks_core: ^0.1.0-dev.1
+  gnu_clacks_flutter: ^0.1.0-dev.1
+  gnu_clacks_http: ^0.1.0-dev.1
+  gnu_clacks_dio: ^0.1.0-dev.1
+  http: 1.6.0
+  dio: 5.11.1
+  cupertino_icons: 1.0.9
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lints: ^6.1.0
+  test: ^1.31.1
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/river.png
+    - assets/lantern.png
+    - assets/ATTRIBUTION.md
+    - assets/fonts/Roboto_LICENSE.txt
+  fonts:
+    - family: ExampleRoboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
