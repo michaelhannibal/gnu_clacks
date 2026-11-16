@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+- Updated the Core dependency to `^0.2.0` for the synchronised suite release.
+
 ## 0.1.0-dev.1 — Unreleased
 
 - Added responsive gallery, guarded detail routes, cards, compact badges and local portraits.

@@ -143,3 +143,7 @@ End-user creation and cloud sync, public memorial directory, accounts, searchabl
 ## Long-term portability
 
 Publish a small independent wire/protocol specification and equivalent test vectors. Other ecosystems must reproduce the allowlist, safety rules and wire format; UI is implementation-specific. Avoid Dart-only semantics leaking into the public protocol.
+
+## Umbrella package
+
+`gnu_clacks` depends on and re-exports Core, Flutter, HTTP and Dio. It contains no business rules or network initialisation. Consumers may install it for the full suite or choose standalone packages. The umbrella requires Flutter and both transport dependencies.

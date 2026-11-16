@@ -4,7 +4,7 @@
 
 ## Engineering strategy
 
-A staged monorepo of four packages and an example app. Work in vertical slices; define tests before integration; preserve independent core, UI and optional transports. Use British English for prose. All production behaviour must be privacy-safe by default.
+A staged monorepo of four component packages, a `gnu_clacks` umbrella and an example app. Work in vertical slices; define tests before integration; preserve independent core, UI and optional transports. Use British English for prose. All production behaviour must be privacy-safe by default.
 
 ## Phase 0 — Validation and repository baseline
 
@@ -121,3 +121,7 @@ Tasks:
 6. Implement Dio adapter with safety tests and web preflight documentation.
 
 Steps 1–6 are implemented for review under the human's Phase 1 and Phase 2 authorisations. Phase 3 UI is also implemented under separate explicit authorisation; Phase 4 example/validation work is also authorised and implemented within the documented host/device limits. Phase 5 is explicitly authorised by the human; documentation, CI and non-publishing release inspection are being prepared. Publication still requires separate instruction.
+
+The user subsequently authorised the umbrella and synchronised version/publication script. Implementation preserves component boundaries; uploads remain a separate action. See `RELEASE.md` for usage and remaining gates.
+
+Release automation now includes bounded registry waits and a prepared per-package tag publishing workflow. Remote pub.dev/OIDC/environment configuration and actual workflow runs remain outstanding; see `RELEASE.md`.

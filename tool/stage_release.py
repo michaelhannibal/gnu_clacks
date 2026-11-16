@@ -2,13 +2,14 @@
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKAGES = ['gnu_clacks_core', 'gnu_clacks_flutter', 'gnu_clacks_http', 'gnu_clacks_dio']
+from release import PACKAGES
 
 
 def main():
@@ -26,7 +27,7 @@ def main():
         for name in PACKAGES:
             source = ROOT / 'packages' / name
             manifest = (source / 'pubspec.yaml').read_text()
-            if 'publish_to: none\n' not in manifest:
+            if not re.search(r'^(?:#\s*)?publish_to: none$', manifest, re.M):
                 raise SystemExit('Source publish guard is absent: ' + name)
             destination = stage / 'packages' / name
             destination.mkdir(parents=True)
@@ -37,7 +38,7 @@ def main():
                 elif original.exists():
                     shutil.copy2(original, destination / item)
             # Publication eligibility changes ONLY in this temporary copy.
-            (destination / 'pubspec.yaml').write_text(manifest.replace('publish_to: none\n', ''))
+            (destination / 'pubspec.yaml').write_text(re.sub(r'^(?:#\s*)?publish_to: none\n', '', manifest, flags=re.M))
         resolution = subprocess.run([dart, 'pub', 'get', '--offline'], cwd=stage,
                                     capture_output=True, text=True)
         if resolution.returncode:
@@ -49,7 +50,7 @@ def main():
             results.append({'package': name, 'exit_code': process.returncode, 'output': output})
             print(name + ': dry-run exit ' + str(process.returncode))
     report = {'mode': 'disposable staged publish --dry-run; no upload and no source guard removal',
-              'version': '0.1.0-dev.1', 'results': results}
+              'versions': {name: re.search(r'^version: (.+)$', (ROOT / 'packages' / name / 'pubspec.yaml').read_text(), re.M).group(1) for name in PACKAGES}, 'results': results}
     target = ROOT / args.report
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(report, indent=2) + '\n')

@@ -32,6 +32,7 @@ In the fictional Clacks network, the GNU instruction keeps a name passing along 
 
 ## Package layout
 
+- `packages/gnu_clacks/` — umbrella re-exporting all four components for a single install.
 - `packages/gnu_clacks_core/` — portable Dart data types, validation, privacy selection, formatting, policy engine.
 - `packages/gnu_clacks_flutter/` — Flutter screens, animations, theme tokens and accessibility.
 - `packages/gnu_clacks_http/` — adapter for `package:http`.
@@ -79,3 +80,7 @@ Use Flutter 3.47.4 / Dart 3.13.3, then run `flutter pub get --enforce-lockfile` 
 Choose a tested minimal composition: [Core policy](packages/gnu_clacks_core/example/gnu_clacks_core_example.dart), [visual-only Flutter](packages/gnu_clacks_flutter/example/gnu_clacks_flutter_example.dart), [HTTP](packages/gnu_clacks_http/example/gnu_clacks_http_example.dart) or [Dio](packages/gnu_clacks_dio/example/gnu_clacks_dio_example.dart). Each package README embeds that exact source. The transport examples require a caller-supplied client, registry and policy; executing their empty entry points sends nothing. Their no-follow setting is an explicit host choice. Follow [adapter guidance](docs/HTTP_INTEGRATIONS.md) before opting into network transmission.
 
 Project homepage: [ydesignz.co.za](https://ydesignz.co.za). Private security reports: [apps@ydesignz.co.za](mailto:apps@ydesignz.co.za); see [reporting guidance](SECURITY.md).
+
+The `gnu_clacks` umbrella offers one dependency for the complete suite while standalone packages remain available. All five use matching versions. See [release commands](docs/RELEASE.md#umbrella-and-synchronised-release-command) for version updates, inspection and interactive publishing with `tool/release.py`. Creating the tooling has not published any package.
+
+Release tooling now waits for pub.dev propagation. A package-tag GitHub Actions publishing workflow is prepared; follow [configuration instructions](docs/RELEASE.md#registry-waits-and-github-actions-configuration) before enabling automated releases.

@@ -3,6 +3,7 @@ publish_to: none
 environment:
   sdk: ^3.13.3
 workspace:
+  - packages/gnu_clacks
   - packages/gnu_clacks_core
   - packages/gnu_clacks_http
   - packages/gnu_clacks_dio

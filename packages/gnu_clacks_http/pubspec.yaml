@@ -1,13 +1,13 @@
 name: gnu_clacks_http
 description: Opt-in package:http integration for allowlisted GNU Clacks memorial headers.
-version: 0.1.0-dev.1
+version: 0.2.0
 publish_to: none
 homepage: https://ydesignz.co.za
 resolution: workspace
 environment:
   sdk: ^3.13.3
 dependencies:
-  gnu_clacks_core: ^0.1.0-dev.1
+  gnu_clacks_core: ^0.2.0
   http: 1.6.0
 dev_dependencies:
   lints: ^6.1.0

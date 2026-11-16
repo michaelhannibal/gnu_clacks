@@ -218,3 +218,20 @@ Public registry/name and action-pin lookups are in `RELEASE_LOOKUPS.json`. No na
 The human supplied `ydesignz.co.za` and `apps@ydesignz.co.za`. All four package manifests now declare `homepage: https://ydesignz.co.za`; SECURITY.md, the security model, README and bundled package docs record the private reporting email. The actual source repository URL remains unconfigured. No email was sent; mailbox delivery/monitoring is unverified.
 
 Refreshed staged dry-runs in RELEASE_DRY_RUN.json: **Core and Flutter exit 0**, with no package validation warnings; **HTTP and Dio exit 65**, each retaining the intentional exact transport-version warning. Homepage metadata warnings are resolved. Package-doc synchronisation, local relative links, homepage fields and source publication guards were checked. No production code changed, so runtime suites were not repeated. No publication occurred.
+
+## Umbrella and release tooling — 16 November 2026
+
+Added the user-requested `gnu_clacks` umbrella, synchronised all five manifests
+and the private example to `0.1.0`, and added `tool/release.py`. Source Core's
+existing commented publication guard was preserved. Other guards remain active.
+Executed offline workspace resolution, Dart analysis with fatal infos (no issues),
+format verification of the three new Dart files (no changes), package-doc sync
+check, Python compilation and five Python orchestration tests. Mocked publication
+tests cover independent copies, order, failure stopping, resume, version validation
+and source guard preservation; they make no registry calls. The umbrella Flutter
+widget/API smoke test passed after allowing its local test-runner socket. Initial
+sandbox execution could not open that socket. Dart analysis was rerun with
+`--suppress-analytics` after its default analytics bookkeeping hit a read-only path.
+No new registry dry-run, upload, platform build or device launch was performed;
+existing dry-run JSON remains historical evidence. Existing component implementation
+and privacy policy are unchanged. Final-candidate release checks remain required.

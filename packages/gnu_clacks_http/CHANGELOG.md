@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+- Updated the Core dependency to `^0.2.0` for the synchronised suite release.
+
 ## 0.1.0-dev.1 — Unreleased
 
 - Added opt-in `ClacksClient` with Core origin, approval and byte-budget policy.

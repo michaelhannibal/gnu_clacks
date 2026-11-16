@@ -106,3 +106,20 @@ The human authorised the final phase on 16 November 2026. Documentation, tested 
 - Public name lookups returned 404 for all five proposed names. This supersedes the earlier failed-lookup evidence, without establishing ownership or guaranteed availability.
 - The human subsequently supplied `ydesignz.co.za` and `apps@ydesignz.co.za`. Record the HTTPS site as the project homepage (not an invented source repository URL), and the email as the private security contact. Delivery/monitoring remain untested; no email was sent. The actual source repository URL remains unconfigured.
 - CI definitions are locally linted, not remotely executed. 1.0 readiness still requires the platform, accessibility/performance, metadata and human approvals in `RELEASE.md`.
+
+## ADR-012: Umbrella package and synchronised release tooling
+
+Accepted by explicit user instruction on 16 November 2026. Add `gnu_clacks` as a
+Flutter umbrella re-exporting all four existing public libraries, preserving their
+independent dependency boundaries. All five versions match; the private example
+tracks the same version. Release tooling updates internal constraints and publishes
+standalone disposable copies in dependency order using normal interactive pub
+validation. This authorises creating the tool, not executing uploads in this task.
+
+## Release automation follow-up
+
+The user authorised bounded local registry waits and a configurable publishing
+workflow. Use exact-version visibility checks and independent resolution retries;
+keep local prompts and require clean dry-runs for non-interactive CI uploads.
+Package-specific tag pushes and a protected `pub.dev` environment scope OIDC
+publishing. First publication and remote configuration remain manual.

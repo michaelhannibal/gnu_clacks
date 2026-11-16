@@ -11,3 +11,10 @@ Build artifacts are retained for seven days. They are inspection outputs, not re
 Locally, run native suites from their package directories. Run `dart test --platform chrome` in Core, HTTP and Dio; `flutter test --platform chrome test/web_smoke_test.dart` in the Flutter package and `flutter test --platform chrome test/web_test.dart` in the example. Set `CHROME_EXECUTABLE` if Chrome is not discoverable. Build commands and actual host evidence are in [the platform matrix](PLATFORM_MATRIX.md). Inspect the workflow for exact selected cross-platform test paths.
 
 Keep action pins current through reviewed updates. Never add publication secrets to pull-request jobs. GitHub guidance: [secure use of Actions](https://docs.github.com/en/actions/reference/security/secure-use).
+
+`publish.yml` is now prepared for package tag pushes and a protected `pub.dev`
+environment. It runs native validation before the separately approved OIDC publish
+job, then waits for exact hosted dependencies and requires a clean archive dry-run.
+Configure each package's pub.dev repository, package tag pattern and environment
+before use; see [release configuration](RELEASE.md#registry-waits-and-github-actions-configuration).
+No remote workflow execution or publishing configuration is claimed.

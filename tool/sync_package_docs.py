@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COMMON = ['PROTOCOL.md', 'SECURITY_MODEL.md', 'MIGRATION.md', 'PLATFORM_MATRIX.md']
-EXTRA = {'gnu_clacks_core': [], 'gnu_clacks_http': ['HTTP_INTEGRATIONS.md'],
+EXTRA = {'gnu_clacks': ['HTTP_INTEGRATIONS.md', 'FLUTTER_UI.md'], 'gnu_clacks_core': [], 'gnu_clacks_http': ['HTTP_INTEGRATIONS.md'],
          'gnu_clacks_dio': ['HTTP_INTEGRATIONS.md'], 'gnu_clacks_flutter': ['FLUTTER_UI.md']}
 
 

@@ -1,13 +1,13 @@
 name: gnu_clacks_dio
 description: Opt-in Dio integration for allowlisted GNU Clacks memorial headers.
-version: 0.1.0-dev.1
+version: 0.2.0
 publish_to: none
 homepage: https://ydesignz.co.za
 resolution: workspace
 environment:
   sdk: ^3.13.3
 dependencies:
-  gnu_clacks_core: ^0.1.0-dev.1
+  gnu_clacks_core: ^0.2.0
   dio: 5.11.1
 dev_dependencies:
   lints: ^6.1.0

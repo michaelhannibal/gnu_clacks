@@ -28,11 +28,13 @@ jobs:
       - run: flutter pub get --enforce-lockfile
       - run: dart format --output=none --set-exit-if-changed packages apps tool
       - run: dart analyze --fatal-infos
+      - run: python3 -m unittest discover -s tool -p "test_*.py"
       - run: python3 tool/sync_package_docs.py --check
       - run: dart run packages/gnu_clacks_core/example/gnu_clacks_core_example.dart
       - name: Flutter engine and golden tests
         run: |
           (cd packages/gnu_clacks_flutter && flutter test --no-pub)
+          (cd packages/gnu_clacks && flutter test --no-pub)
           (cd apps/gnu_clacks_example && flutter test --no-pub)
       - name: Browser policy, CORS and UI tests
         env:

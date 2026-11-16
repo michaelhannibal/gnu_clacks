@@ -21,3 +21,5 @@
 
 - Phase 5 adds executable/tested package examples, archive-contained reference docs, API documentation generation, contributor/security/migration/release guidance and pinned CI workflows.
 - Recorded non-publishing staged dry-runs and their unresolved metadata/constraint warnings. All source publication guards remain enabled.
+
+- Added the `gnu_clacks` umbrella and synchronised release tooling for all five packages.
