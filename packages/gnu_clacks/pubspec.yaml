@@ -1,6 +1,6 @@
 name: gnu_clacks
 description: Memorial gallery, accessible Clacks animation and opt-in HTTP and Dio tributes.
-version: 0.2.0
+version: 1.0.0
 publish_to: none
 homepage: https://ydesignz.co.za
 resolution: workspace
@@ -10,10 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gnu_clacks_core: ^0.2.0
-  gnu_clacks_flutter: ^0.2.0
-  gnu_clacks_http: ^0.2.0
-  gnu_clacks_dio: ^0.2.0
+  gnu_clacks_core: ^1.0.0
+  gnu_clacks_flutter: ^1.0.0
+  gnu_clacks_http: ^1.0.0
+  gnu_clacks_dio: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,6 +1,6 @@
 name: gnu_clacks_core
 description: Pure Dart memorial models and opt-in GNU Clacks header policy. No network I/O.
-version: 0.2.0
+version: 1.0.0
 # publish_to: none
 homepage: https://ydesignz.co.za
 resolution: workspace

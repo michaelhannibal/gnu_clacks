@@ -1,6 +1,6 @@
 name: gnu_clacks_flutter
 description: Offline, accessible memorial gallery and symbolic Clacks tribute widgets.
-version: 0.2.0
+version: 1.0.0
 publish_to: none
 homepage: https://ydesignz.co.za
 resolution: workspace
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gnu_clacks_core: ^0.2.0
+  gnu_clacks_core: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,6 +1,6 @@
 name: gnu_clacks_example
 description: Local-only GNU Clacks package integration demonstration with fictional superhero memorials.
-version: 0.2.0
+version: 1.0.0
 publish_to: none
 resolution: workspace
 environment:
@@ -9,10 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gnu_clacks_core: ^0.2.0
-  gnu_clacks_flutter: ^0.2.0
-  gnu_clacks_http: ^0.2.0
-  gnu_clacks_dio: ^0.2.0
+  gnu_clacks_core: ^1.0.0
+  gnu_clacks_flutter: ^1.0.0
+  gnu_clacks_http: ^1.0.0
+  gnu_clacks_dio: ^1.0.0
   http: 1.6.0
   dio: 5.11.1
   cupertino_icons: 1.0.9
