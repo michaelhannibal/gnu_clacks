@@ -29,8 +29,35 @@ migrate_working_dir/
 **/build/
 **/coverage/
 
+# AI assistant instructions, configuration and local state
+AGENTS.md
+AGENTS.override.md
+CLAUDE.md
+CLAUDE.local.md
+GEMINI.md
+.agents/
+.codex/
+.claude/
+.gemini/
+.cursor/
+.cursorrules
+.cursorignore
+.cursorindexingignore
+.windsurf/
+.windsurfrules
+.aider*
+.continue/
+.cline/
+.clinerules/
+.clinerules
+.roo/
+.roorules/
+.roorules
+.github/copilot-instructions.md
+.github/instructions/
+.github/prompts/
+.github/agents/
+
 # Local tool state and separate nested checkout
-/.agents/
 /.aws/
-/.codex/
 /gnu_clacks/
