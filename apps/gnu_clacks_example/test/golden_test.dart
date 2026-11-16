@@ -34,8 +34,9 @@ void main() {
       if (gallery) {
         await tester.runAsync(() async {
           final context = tester.element(find.byType(ClacksExampleApp));
-          await precacheImage(const AssetImage('assets/river.png'), context);
-          await precacheImage(const AssetImage('assets/lantern.png'), context);
+          for (final name in ['forge', 'thread', 'dawn', 'pines']) {
+            await precacheImage(AssetImage('assets/$name.png'), context);
+          }
         });
         await tester.ensureVisible(find.text('Open memorial gallery'));
         await tester.tap(find.text('Open memorial gallery'));

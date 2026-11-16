@@ -100,7 +100,7 @@ gnu_clacks/
 
 ### Display
 
-Host supplies immutable registry → Flutter filters `displayEnabled` → responsive gallery → memorial detail screen → optional symbolic Clacks signal. Direct detail access and compact widgets also enforce display eligibility. No analytics, persistent storage or background activity.
+Host supplies immutable registry → Flutter filters `displayEnabled` → responsive gallery → memorial detail screen → optional Clacks relay of the display name. Direct detail access and compact widgets also enforce display eligibility. No analytics, persistent storage or background activity.
 
 ### Request
 

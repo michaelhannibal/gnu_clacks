@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added `ClacksLampCode`, a display-only nine-lamp (3×3) code: 8-bit printable ASCII on the outer ring, with the centre lamp lit alone for `ClacksLampCode.end`.
+
 ## 0.1.0-dev.1 — Unreleased
 
 - Immutable developer-owned memorials, partial dates, local attribution and registry snapshots.

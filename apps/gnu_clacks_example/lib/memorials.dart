@@ -1,19 +1,25 @@
 import 'package:gnu_clacks_core/gnu_clacks_core.dart';
 
-/// Fictional, developer-configured sample content. No end-user editing.
+/// Superheroes who died on screen in recent films: developer-configured,
+/// local demo content only. This app is never published. Names, original
+/// dedications and original illustrations only (no character art, logos or
+/// quotes). Only Tony Stark is network-approved, for the localhost header demo.
+/// Dates are in-story years, so they can differ
+/// from the film's release year in the dedication.
 final exampleRegistry = MemorialRegistry([
   Memorial(
-    id: 'alex-example',
-    displayName: 'Alex Example',
-    dedication: 'For the kindness shared, the paths explored and the stories that remain.',
-    birthDate: PartialDate(1942),
-    deathDate: PartialDate(2020),
+    id: 'tony-stark',
+    displayName: 'Tony Stark',
+    dedication: 'Iron Man. Avengers: Endgame (2019). Built a suit of armour, then gave everything to protect others.',
+    birthDate: PartialDate(1970),
+    deathDate: PartialDate(2023),
     displayEnabled: true,
     networkApproved: true,
-    networkName: 'Alex Example',
+    networkName: 'Tony Stark',
     sortOrder: 1,
-    imageAsset: 'assets/river.png',
-    imageAltText: 'An original abstract river landscape at dusk.',
+    imageAsset: 'assets/forge.png',
+    imageAltText:
+        'An original geometric anvil with sparks rising over a city at dusk.',
     imageAttribution: AssetAttribution(
       creator: 'Ydesignz',
       source: 'Original example illustration',
@@ -21,16 +27,17 @@ final exampleRegistry = MemorialRegistry([
     ),
   ),
   Memorial(
-    id: 'sam-example',
-    displayName: 'Sam Example',
-    dedication: 'Remembered for a curious mind, a generous spirit and a love of the everyday.',
-    birthDate: PartialDate(1956),
-    deathDate: PartialDate(2024),
+    id: 'natasha-romanoff',
+    displayName: 'Natasha Romanoff',
+    dedication: 'Black Widow. Avengers: Endgame (2019). Chose her family, and let go so they could go on.',
+    birthDate: PartialDate(1984),
+    deathDate: PartialDate(2023),
     displayEnabled: true,
-    networkName: 'Sam Example',
+    networkName: 'Natasha Romanoff',
     sortOrder: 2,
-    imageAsset: 'assets/lantern.png',
-    imageAltText: 'An original geometric lantern beneath a night sky.',
+    imageAsset: 'assets/thread.png',
+    imageAltText:
+        'An original geometric thread winding over hills to a lit house.',
     imageAttribution: AssetAttribution(
       creator: 'Ydesignz',
       source: 'Original example illustration',
@@ -38,10 +45,45 @@ final exampleRegistry = MemorialRegistry([
     ),
   ),
   Memorial(
-    id: 'robin-example',
-    displayName: 'Robin Example',
-    dedication: 'The laughter and quiet moments stay with us.',
+    id: 'vision',
+    displayName: 'Vision',
+    dedication: 'Avengers: Infinity War (2018). Only a few years old, and already more human than most.',
+    birthDate: PartialDate(2015),
+    deathDate: PartialDate(2018),
     displayEnabled: true,
+    networkName: 'Vision',
     sortOrder: 3,
+    imageAsset: 'assets/dawn.png',
+    imageAltText: 'An original geometric window with the sun rising beyond it.',
+    imageAttribution: AssetAttribution(
+      creator: 'Ydesignz',
+      source: 'Original example illustration',
+      licence: 'MIT',
+    ),
+  ),
+  Memorial(
+    id: 'logan',
+    displayName: 'Logan',
+    dedication: 'Wolverine. Logan (2017). Spent his last road trip getting a child to safety.',
+    birthDate: PartialDate(1832),
+    deathDate: PartialDate(2029),
+    displayEnabled: true,
+    networkName: 'Logan',
+    sortOrder: 4,
+    imageAsset: 'assets/pines.png',
+    imageAltText: 'An original geometric road running between pine trees to a lake under the moon.',
+    imageAttribution: AssetAttribution(
+      creator: 'Ydesignz',
+      source: 'Original example illustration',
+      licence: 'MIT',
+    ),
+  ),
+  // Name only: exercises the smallest valid entry (no dedication, dates,
+  // image or network name).
+  Memorial(
+    id: 'gamora',
+    displayName: 'Gamora',
+    displayEnabled: true,
+    sortOrder: 5,
   ),
 ]);

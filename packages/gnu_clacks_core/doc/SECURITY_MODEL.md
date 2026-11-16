@@ -20,7 +20,7 @@ Diagnostics contain fixed enum codes only. Header values themselves contain memo
 
 The Flutter package depends on Core and Flutter only. It uses packaged AssetImage content, with a local drawn fallback while loading or on errors. It renders supplied attribution offline and does not interpret a network flag as personal consent. Hidden entries are checked in direct detail and composed content widgets. No remote asset or font loader is included.
 
-Reduced motion overrides package animation. TickerMode, ordinary viewport visibility, app lifecycle and explicit host activity control stop the signal. The signal is symbolic and does not encode or transmit a message. Host caching determines disconnected web cold-load availability; static web deployment is not a hosted memorial service.
+Reduced motion overrides package animation. TickerMode, ordinary viewport visibility, app lifecycle and explicit host activity control stop the signal. The signal spells the display name locally in a nine-lamp ASCII code and transmits nothing; it never uses `networkName` or approval state. Host caching determines disconnected web cold-load availability; static web deployment is not a hosted memorial service.
 
 ## Trust boundaries and evidence
 

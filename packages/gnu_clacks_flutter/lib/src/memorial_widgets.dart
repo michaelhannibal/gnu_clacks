@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
 import 'package:gnu_clacks_core/gnu_clacks_core.dart';
@@ -362,142 +363,152 @@ class MemorialDetailScreen extends StatelessWidget {
         final memorial = entry;
         return Scaffold(
           appBar: AppBar(title: Text(strings.title)),
-          body: SafeArea(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(tokens.safeSpacing),
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 720),
-                  child: memorial == null
-                      ? _EmptyState(title: strings.unavailable)
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                tokens.safeRadius,
-                              ),
-                              child: MemorialPortrait(memorial: memorial),
-                            ),
-                            SizedBox(height: tokens.safeSpacing * 1.5),
-                            Semantics(
-                              header: true,
-                              child: Text(
-                                memorial.displayName,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineLarge,
-                              ),
-                            ),
-                            if (memorial.birthDate != null ||
-                                memorial.deathDate != null) ...[
-                              const SizedBox(height: 12),
-                              Text(
-                                strings.lifespan(
-                                  memorial.birthDate,
-                                  memorial.deathDate,
-                                ),
-                              ),
-                            ],
-                            SizedBox(height: tokens.safeSpacing),
-                            Text(
-                              'GNU ${memorial.displayName}',
-                              style: Theme.of(context).textTheme.titleMedium
-                                  ?.copyWith(
-                                    color: tokens.accentOn(tokens.background),
+          body: _ImageBackdrop(
+            asset: memorial?.imageAsset,
+            background: tokens.background,
+            child: SafeArea(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(tokens.safeSpacing),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 720),
+                    child: memorial == null
+                        ? _EmptyState(title: strings.unavailable)
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // No placeholder when the person has no image.
+                              if (memorial.imageAsset != null) ...[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                    tokens.safeRadius,
                                   ),
-                            ),
-                            if (memorial.dedication != null &&
-                                memorial.dedication!.isNotEmpty) ...[
-                              SizedBox(height: tokens.safeSpacing),
-                              SelectableText(
-                                memorial.dedication!,
-                                style: Theme.of(context).textTheme.bodyLarge
-                                    ?.copyWith(height: 1.65),
-                              ),
-                            ],
-                            SizedBox(height: tokens.safeSpacing * 1.5),
-                            Theme(
-                              data: _materialTheme(
-                                context,
-                                tokens,
-                                onSurface: true,
-                              ),
-                              child: Material(
-                                color: tokens.surface,
-                                borderRadius: BorderRadius.circular(
-                                  tokens.safeRadius,
+                                  child: MemorialPortrait(memorial: memorial),
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(tokens.safeSpacing),
-                                  child: ClacksSignal(animate: animate),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            TextButton(
-                              onPressed: () => showDialog<void>(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: Text(strings.explanationTitle),
-                                  content: SingleChildScrollView(
-                                    child: Text(strings.explanation),
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                      child: Text(
-                                        MaterialLocalizations.of(context)
-                                            .closeButtonLabel,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              child: Text(strings.explanationTitle),
-                            ),
-                            if (memorial.imageAttribution != null) ...[
-                              SizedBox(height: tokens.safeSpacing),
+                                SizedBox(height: tokens.safeSpacing * 1.5),
+                              ],
                               Semantics(
                                 header: true,
                                 child: Text(
-                                  strings.assetCredits,
+                                  memorial.displayName,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .titleMedium,
+                                      .headlineLarge,
                                 ),
                               ),
-                              const SizedBox(height: 8),
-                              Text(
-                                '${strings.creator}: ${memorial.imageAttribution!.creator}',
-                              ),
-                              Text(
-                                '${strings.source}: ${memorial.imageAttribution!.source}',
-                              ),
-                              Text(
-                                '${strings.licence}: ${memorial.imageAttribution!.licence}',
-                              ),
-                              if (memorial.imageAttribution!.notice != null)
-                                Text(memorial.imageAttribution!.notice!),
-                              if (memorial.imageAttribution!.modifications !=
-                                  null)
+                              if (memorial.birthDate != null ||
+                                  memorial.deathDate != null) ...[
+                                const SizedBox(height: 12),
                                 Text(
-                                  '${strings.modifications}: ${memorial.imageAttribution!.modifications}',
+                                  strings.lifespan(
+                                    memorial.birthDate,
+                                    memorial.deathDate,
+                                  ),
                                 ),
-                            ],
-                            if (onOpenCredits != null)
-                              TextButton(
-                                onPressed: onOpenCredits,
-                                child: Text(strings.credits),
+                              ],
+                              SizedBox(height: tokens.safeSpacing),
+                              Text(
+                                'GNU ${memorial.displayName}',
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(
+                                      color: tokens.accentOn(tokens.background),
+                                    ),
                               ),
-                            SizedBox(height: tokens.safeSpacing),
-                            Text(
-                              strings.nonAffiliation,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ],
-                        ),
+                              if (memorial.dedication != null &&
+                                  memorial.dedication!.isNotEmpty) ...[
+                                SizedBox(height: tokens.safeSpacing),
+                                SelectableText(
+                                  memorial.dedication!,
+                                  style: Theme.of(context).textTheme.bodyLarge
+                                      ?.copyWith(height: 1.65),
+                                ),
+                              ],
+                              SizedBox(height: tokens.safeSpacing * 1.5),
+                              Theme(
+                                data: _materialTheme(
+                                  context,
+                                  tokens,
+                                  onSurface: true,
+                                ),
+                                child: Material(
+                                  color: tokens.surface,
+                                  borderRadius: BorderRadius.circular(
+                                    tokens.safeRadius,
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(tokens.safeSpacing),
+                                    child: ClacksSignal(
+                                      message: 'GNU ${memorial.displayName}',
+                                      animate: animate,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              TextButton(
+                                onPressed: () => showDialog<void>(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text(strings.explanationTitle),
+                                    content: SingleChildScrollView(
+                                      child: Text(strings.explanation),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        child: Text(
+                                          MaterialLocalizations.of(context)
+                                              .closeButtonLabel,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                child: Text(strings.explanationTitle),
+                              ),
+                              if (memorial.imageAttribution != null) ...[
+                                SizedBox(height: tokens.safeSpacing),
+                                Semantics(
+                                  header: true,
+                                  child: Text(
+                                    strings.assetCredits,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  '${strings.creator}: ${memorial.imageAttribution!.creator}',
+                                ),
+                                Text(
+                                  '${strings.source}: ${memorial.imageAttribution!.source}',
+                                ),
+                                Text(
+                                  '${strings.licence}: ${memorial.imageAttribution!.licence}',
+                                ),
+                                if (memorial.imageAttribution!.notice != null)
+                                  Text(memorial.imageAttribution!.notice!),
+                                if (memorial.imageAttribution!.modifications !=
+                                    null)
+                                  Text(
+                                    '${strings.modifications}: ${memorial.imageAttribution!.modifications}',
+                                  ),
+                              ],
+                              if (onOpenCredits != null)
+                                TextButton(
+                                  onPressed: onOpenCredits,
+                                  child: Text(strings.credits),
+                                ),
+                              SizedBox(height: tokens.safeSpacing),
+                              Text(
+                                strings.nonAffiliation,
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ],
+                          ),
+                  ),
                 ),
               ),
             ),
@@ -619,4 +630,53 @@ ThemeData _materialTheme(
       ),
     ),
   );
+}
+
+/// The person's own image behind the detail page, blurred and heavily faded
+/// into the theme background. Shown only when the memorial has an image;
+/// a missing or broken asset shows nothing. Decorative: hidden from screen
+/// readers and pointer input, and fixed while the page scrolls.
+class _ImageBackdrop extends StatelessWidget {
+  const _ImageBackdrop({
+    required this.asset,
+    required this.background,
+    required this.child,
+  });
+  final String? asset;
+  final Color background;
+  final Widget child;
+
+  /// Share of the image that shows through the background wash.
+  static const strength = .1;
+
+  @override
+  Widget build(BuildContext context) {
+    final image = asset;
+    if (image == null) return child;
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: ExcludeSemantics(
+            child: IgnorePointer(
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                child: Image.asset(
+                  image,
+                  key: const ValueKey('clacks-detail-backdrop'),
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
+                  color: background.withValues(alpha: 1 - strength),
+                  colorBlendMode: BlendMode.srcOver,
+                  excludeFromSemantics: true,
+                  errorBuilder: (context, error, stack) =>
+                      const SizedBox.shrink(),
+                ),
+              ),
+            ),
+          ),
+        ),
+        child,
+      ],
+    );
+  }
 }

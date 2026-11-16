@@ -77,7 +77,7 @@ Carry-forward evidence does not imply support:
 **Explicitly authorised by the human on 16 November 2026** with “phase 3 please”. This adds the full Flutter tribute UI and tests without changing Core or transport policy.
 
 - `gnu_clacks_flutter` imports Flutter/Core only. It renders local developer-owned content, never infers display from network approval, and checks eligibility in direct detail and composable widgets.
-- Original tower geometry is a symbolic visualisation, with no encoded alphabet or transmission claim. No portraits/fonts are shipped as package content or fetched at runtime.
+- Original tower geometry is a local visualisation with no transmission claim (encoding superseded by ADR-013). No portraits/fonts are shipped as package content or fetched at runtime.
 - Reduced motion overrides package animation and gallery-created route transitions. App lifecycle, scrolling/viewports, opacity/Offstage and TickerMode pause the signal; custom retained/hidden layouts can explicitly set `active=false`.
 - Theme/localisation configuration stays in Flutter. Host typography is respected, opaque surface/foreground pairs have contrast fallbacks, and supplied asset attribution is displayed offline.
 - Development uses the existing Flutter 3.47.4/Dart 3.13.3 SDK through a temporary writable tool cache. Flutter SDK constraints changed resolved development-tool versions; Core/adapter regressions were rerun. No SDK upgrade or new runtime dependency on a transport was introduced.
@@ -87,7 +87,7 @@ Carry-forward evidence does not imply support:
 
 **Explicitly authorised by the human on 16 November 2026** with “Phase 4”. The example app, local-only fixtures, available-host compatibility tests/builds and audits are authorised; CI, publication and Phase 5 remain separate.
 
-- The example starts visual-only with motion/transmission off and no endpoint. Three fictional entries and original local illustrations demonstrate display/network separation. The example consumes Core policy; it is not a new source of protocol rules.
+- The example starts visual-only with motion/transmission off and no endpoint. Three fictional entries and original local illustrations demonstrate display/network separation. By user instruction (16 November 2026) the private demo app now lists only four superheroes who died on screen in recent films, replacing the three fictional entries, with original dedications, in-story years and original illustrations. Tony Stark takes over as the single network-approved name for the localhost header demo; the others are display-only. They are a local demo only and never appear in published package examples or READMEs. The example consumes Core policy; it is not a new source of protocol rules.
 - Optional test actions are restricted to developer-configured HTTPS localhost/127.0.0.1 origins and explicit sends. Normal TLS validation remains intact. Test-specific certificate trust is confined to automated fixtures, not app/adapters.
 - Plain-Dart header-only, visual-only and full-tribute paths are provided. Web renderer/fonts are served locally; disconnected web cold-start asset caching remains host-owned.
 - Generated platform runners and original application icons target all six platforms, but only evidenced builds/runs are claimed. See `PLATFORM_MATRIX.md`; no unsupported Apple/Windows support claim is inferred from scaffolds.
@@ -123,3 +123,27 @@ workflow. Use exact-version visibility checks and independent resolution retries
 keep local prompts and require clean dry-runs for non-interactive CI uploads.
 Package-specific tag pushes and a protected `pub.dev` environment scope OIDC
 publishing. First publication and remote configuration remain manual.
+
+## ADR-013: Clacks lamp relay of the memorial name
+
+Accepted by explicit user instruction on 16 November 2026. The detail screen's
+signal relays the display name: name on the left, each character crossing the
+towers in a 2×3 lamp code, then printed on the right in order. The code is each
+character's upper-cased ASCII code point reduced to its low six bits (`A` = 1,
+space = 32), which is unique for space to `_`. A reference chart image of a
+different Clacks alphabet was supplied, but that chart's lamp patterns are not
+used; the user chose to keep the ASCII-based code and draw original artwork.
+`ClacksLampCode` lives in Core as pure display data and is never used for
+header values. Animation remains local, optional and reduced-motion aware.
+
+Addendum (16 November 2026, user instruction): the detail relay sends
+`GNU <display name>` followed by an END signal, and the detail screen omits
+the portrait placeholder when a memorial has no image.
+
+Superseded encoding (same day, user instruction): the 2×3 low-six-bit code is
+replaced by a 3×3 grid. The eight outer lamps show the full 8-bit ASCII byte
+(as in the clacks-messenger alphabet the user referenced), read clockwise
+from the top-left, most significant bit first. The centre lamp is reserved:
+characters never light it, and END is the centre lamp alone. At most eight
+lamps are ever lit, every printable ASCII character is distinct (including
+`?` and lowercase), and END cannot collide with a character.

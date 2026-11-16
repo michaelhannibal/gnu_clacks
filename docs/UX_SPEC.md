@@ -31,7 +31,7 @@ Create a dignified full memorial experience inside host Flutter applications. Sh
 ### 3. Clacks animation
 
 - Original, simple semaphore tower visualisation with a gentle pulse/signal moving across towers.
-- Default animation depicts *symbolic ongoing transmission*. Never claim exact encoded GNU lettering unless verified encoding scheme is implemented and documented.
+- The detail screen relays the memorial's display name: `GNU` and the name on the left, each character travelling tower to tower in a documented nine-lamp code (8-bit ASCII on the outer ring, centre lamp for END only) (see `FLUTTER_UI.md`), then END, and the name respelled on the right as letters arrive. It is a local display only; never claim it transmits anything. Without a message, the signal shows a symbolic pulse.
 - Animation should pause when offscreen and on reduced-motion preference, with an equivalent static view.
 - No constant CPU/GPU work from invisible screens; no audio by default.
 

@@ -52,7 +52,7 @@ Never silently broadcast a memorial, its image, date, dedication or the user's i
 
 ## Visual language
 
-A tasteful memorial, not a game: warm brass/gold on slate for the classic Clacks theme, plus minimal, light, dark and adaptable host-app themes. Avoid visual clutter; always respect reduced-motion and accessibility settings. The animated representation should be marked as **symbolic** unless its encoding is fully documented and verifiably correct.
+A tasteful memorial, not a game: warm brass/gold on slate for the classic Clacks theme, plus minimal, light, dark and adaptable host-app themes. Avoid visual clutter; always respect reduced-motion and accessibility settings. The detail animation relays `GNU` and the person's name across the towers in a documented nine-lamp code (8-bit ASCII on the outer ring, centre lamp for END only), then an END signal, and respells it as each letter arrives; it is a local display and sends nothing.
 
 ## Build and publication
 

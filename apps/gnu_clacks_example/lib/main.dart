@@ -93,7 +93,7 @@ class _ClacksExampleAppState extends State<ClacksExampleApp> {
                       ),
                       const SizedBox(height: 12),
                       const Text(
-                        'An offline demonstration with fictional memorials. Explore the tribute UI, inspect the header setup, or combine both.',
+                        'An offline demonstration with fictional superhero memorials. Explore the tribute UI, inspect the header setup, or combine both.',
                       ),
                       const SizedBox(height: 24),
                       Wrap(
@@ -173,7 +173,7 @@ class _ClacksExampleAppState extends State<ClacksExampleApp> {
                               ),
                               const SizedBox(height: 8),
                               const Text(
-                                'Three fictional entries, bundled local illustrations, and a complete gallery and detail experience. Display eligibility is independent of network approval.',
+                                'Five superheroes who died on screen, original local illustrations, and a complete gallery and detail experience. Display eligibility is independent of network approval.',
                               ),
                               const SizedBox(height: 16),
                               ClacksSignal(animate: _animate),
@@ -252,7 +252,7 @@ class _ClacksExampleAppState extends State<ClacksExampleApp> {
         ),
         const SizedBox(height: 8),
         const Text(
-          'Only Alex Example is developer-approved for transmission. Sam and Robin remain visual-only. No request is made until you press a test button.',
+          'Only Tony Stark is developer-approved for transmission. The others remain visual-only. No request is made until you press a test button.',
         ),
         const SizedBox(height: 16),
         SwitchListTile(
@@ -355,7 +355,7 @@ class _ClacksExampleAppState extends State<ClacksExampleApp> {
       title: const Text('Privacy and credits'),
       content: const SingleChildScrollView(
         child: Text(
-          'All names, dates and dedications in this app are fictional. The river, lantern and tower illustrations are original project artwork.\n\n'
+          'All names, dates and dedications in this app are fictional. Superhero names belong to their rights holders; this local demo is not affiliated with any studio or publisher. The forge, thread, dawn, pines and tower illustrations are original project artwork.\n\n'
           'MIT · Copyright 2026 Ydesignz. Roboto font notices are bundled in assets/fonts/Roboto_LICENSE.txt; Flutter dependency notices are available below.\n\n'
           'No analytics, accounts, remote image loading or automatic requests. Network tests require a developer-configured HTTPS localhost endpoint and a deliberate button press.\n\n'
           'Inspired by Terry Pratchett’s Going Postal. Not affiliated with Discworld or the Terry Pratchett estate.',

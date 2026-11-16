@@ -5,5 +5,6 @@ library;
 
 export 'src/models.dart'
     show PartialDate, AssetAttribution, Memorial, MemorialRegistry;
+export 'src/lamp_code.dart' show ClacksLampCode;
 export 'src/origin.dart' show HttpsOrigin;
 export 'src/header_policy.dart';

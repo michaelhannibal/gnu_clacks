@@ -75,7 +75,7 @@ void main() {
         final enabled = useDio
             ? await network.sendDio(enabled: true)
             : await network.sendHttp(enabled: true);
-        expect(enabled.receivedHeader, 'GNU Alex Example');
+        expect(enabled.receivedHeader, 'GNU Tony Stark');
         expect(fixture.observations, hasLength(2));
         expect(fixture.observations.last.body, isEmpty);
       },
@@ -85,12 +85,12 @@ void main() {
   test(
     'sample registry has separate display/network flags and local assets',
     () {
-      expect(exampleRegistry.displayEntries, hasLength(3));
+      expect(exampleRegistry.displayEntries, hasLength(5));
       expect(
         exampleRegistry.entries
             .where((e) => e.networkApproved)
             .map((e) => e.id),
-        ['alex-example'],
+        ['tony-stark'],
       );
       expect(
         exampleRegistry.entries

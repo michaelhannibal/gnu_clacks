@@ -257,7 +257,7 @@ void main() {
   );
 
   testWidgets(
-    'attribution is retained offline, and explanations never claim actual encoding',
+    'attribution is retained offline, and explanations say nothing is sent',
     (tester) async {
       final credited = Memorial(
         id: 'a',
@@ -294,7 +294,7 @@ void main() {
       await tester.tap(find.text('About the Clacks'));
       await tester.pumpAndSettle();
       expect(
-        find.textContaining('does not encode or send a message'),
+        find.textContaining('runs only on this device; nothing is sent'),
         findsOneWidget,
       );
     },

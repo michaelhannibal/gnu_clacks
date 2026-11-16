@@ -12,6 +12,7 @@ Import `package:gnu_clacks_core/gnu_clacks_core.dart`.
 | `PartialDate` | Year, optional month, optional day; calendar validation without invented precision |
 | `AssetAttribution` | Local creator, provenance, licence/permission and notice records |
 | `MemorialRegistry` | Defensive immutable snapshot with unique trimmed IDs and filtered display entries |
+| `ClacksLampCode.encode` | Nine-lamp display pattern for one character (8-bit ASCII on the outer ring; centre lamp only for `ClacksLampCode.end`); display only, never used in headers |
 | `HttpsOrigin.tryParse` | Validate an allowlist origin under the conservative ASCII v1 profile |
 | `HttpsOrigin.forRequest` | Extract an origin from a raw request URL without DNS or IDNA conversion |
 | `normaliseNetworkName` | Validate an explicit alias, then trim/collapse ASCII spaces; no transliteration |

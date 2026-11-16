@@ -23,10 +23,15 @@ class ClacksLocalizations {
   String get dedication => 'Remembered with love';
   String get explanationTitle => 'About the Clacks';
   String get explanation =>
-      'Inspired by the Clacks tradition in Terry Pratchett’s Going Postal, GNU is a symbolic tribute to keeping a name in remembrance. This animation is symbolic; it does not encode or send a message.';
+      'Inspired by the Clacks tradition in Terry Pratchett’s Going Postal, GNU is a symbolic tribute to keeping a name in remembrance. The towers send GNU and the name letter by letter, then the end signal, on a grid of nine lamps: each character’s 8-bit ASCII code is shown on the eight outer lamps, read clockwise from the top-left, and the centre lamp lights alone for the end. The animation runs only on this device; nothing is sent.';
   String get nonAffiliation =>
       'An independent community tribute. Not affiliated with Discworld or the Terry Pratchett estate.';
   String get symbolicSignal => 'Symbolic Clacks signal. Their names live on.';
+
+  /// Shown after the relayed message for the end-of-message signal.
+  String get endSignal => 'END';
+  String relaySignal(String name) =>
+      'Clacks towers sending $name letter by letter, then the end signal. Their names live on.';
   String get pause => 'Pause motion';
   String get resume => 'Resume motion';
   String get credits => 'Privacy and credits';

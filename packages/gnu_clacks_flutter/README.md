@@ -1,6 +1,6 @@
 # GNU Clacks Flutter
 
-Offline memorial gallery, detail screen, compact badge, local portraits and a symbolic Clacks animation. Depends only on Flutter and GNU Clacks Core; no transport adapter or backend is required. MIT, copyright 2026 Ydesignz.
+Offline memorial gallery, detail screen, compact badge, local portraits and a Clacks tower animation that relays the memorial's name letter by letter. Depends only on Flutter and GNU Clacks Core; no transport adapter or backend is required. MIT, copyright 2026 Ydesignz.
 
 Import `package:gnu_clacks_flutter/gnu_clacks_flutter.dart`. Supply an immutable Core registry with explicit display eligibility. `MemorialGallery` provides responsive cards and detail navigation; `MemorialDetailScreen`, `MemorialCard`, `MemorialBadge`, `MemorialPortrait` and `ClacksSignal` can be used independently. Hidden definitions remain hidden in directly composed widgets. Network aliases and approval flags never become UI identities.
 

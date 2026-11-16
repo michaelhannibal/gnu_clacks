@@ -5,7 +5,7 @@ Phase 5 prepares an unpublished `0.1.0-dev.1` candidate. It does not establish t
 ## Gates
 
 - Obtain human visual/accessibility approval, real screen-reader review and device performance/cold-start evidence. Investigate Linux ATK warnings.
-- Obtain actual iOS, macOS and Windows build/runtime evidence before claiming support. Android currently has build-only evidence by explicit user choice. Obtain actual CI runs; workflow configuration alone is insufficient.
+- Obtain actual iOS, macOS and Windows build/runtime evidence before claiming support. Android has debug build and one physical-device debug run (Android 17); release builds, TalkBack review and performance evidence remain outstanding. Obtain actual CI runs; workflow configuration alone is insufficient.
 - Supply the actual source repository URL. The steward supplied https://ydesignz.co.za as the project homepage and apps@ydesignz.co.za as the private security contact; these are now documented and the homepage is in package metadata. Confirm mailbox delivery/monitoring, verify public links and agree a maintenance/support policy. No reporting email was sent during preparation.
 - Confirm ownership of package names immediately before release. Live pub.dev lookups on 16 November 2026 returned HTTP 404 for `gnu_clacks`, `gnu_clacks_core`, `gnu_clacks_flutter`, `gnu_clacks_http` and `gnu_clacks_dio`; this neither reserves names nor guarantees availability. No names were registered.
 - Review public APIs, licences, original asset provenance, dependencies/advisories, version constraints, changelogs and migration guidance. Retain the explicitly unverified multi-name interoperability limitation.

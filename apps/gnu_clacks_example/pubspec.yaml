@@ -1,5 +1,5 @@
 name: gnu_clacks_example
-description: Local-only GNU Clacks package integration demonstration with fictional memorials.
+description: Local-only GNU Clacks package integration demonstration with fictional superhero memorials.
 version: 0.2.0
 publish_to: none
 resolution: workspace
@@ -24,8 +24,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/river.png
-    - assets/lantern.png
+    - assets/forge.png
+    - assets/thread.png
+    - assets/dawn.png
+    - assets/pines.png
     - assets/ATTRIBUTION.md
     - assets/fonts/Roboto_LICENSE.txt
   fonts:

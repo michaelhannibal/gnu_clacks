@@ -65,19 +65,19 @@ void main() {
       await tester.tap(find.text('Open memorial gallery'));
       await tester.pumpAndSettle();
       expect(find.byType(MemorialGallery), findsOneWidget);
-      expect(find.text('Alex Example'), findsOneWidget);
-      expect(find.text('Sam Example'), findsOneWidget);
-      expect(find.text('Robin Example'), findsOneWidget);
+      expect(find.text('Tony Stark'), findsOneWidget);
+      expect(find.text('Natasha Romanoff'), findsOneWidget);
+      expect(find.text('Vision'), findsOneWidget);
       expect(
         tester
             .widgetList<Image>(find.byType(Image))
             .every((i) => i.image is AssetImage),
         isTrue,
       );
-      await tester.tap(find.text('Alex Example'));
+      await tester.tap(find.text('Tony Stark'));
       await tester.pumpAndSettle();
       expect(find.byType(MemorialDetailScreen), findsOneWidget);
-      expect(find.text('GNU Alex Example'), findsOneWidget);
+      expect(find.text('GNU Tony Stark'), findsOneWidget);
       expect(find.text('Creator: Ydesignz'), findsOneWidget);
       expect(tester.takeException(), isNull);
     },

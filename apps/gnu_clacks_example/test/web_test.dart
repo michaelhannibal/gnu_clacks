@@ -17,7 +17,7 @@ void main() {
     await tester.tap(find.text('Open memorial gallery'));
     await tester.pumpAndSettle();
     expect(find.byType(MemorialGallery), findsOneWidget);
-    expect(find.text('Alex Example'), findsOneWidget);
+    expect(find.text('Tony Stark'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 }

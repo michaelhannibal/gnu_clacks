@@ -6,7 +6,7 @@ The suite targets six Flutter platforms. Evidence below is deliberately narrower
 |---|---|---|---|
 | Web | Release build passed with local renderer resources and bundled fonts | Chrome smoke tests, local-only built-bundle screenshot with external DNS blocked, package CORS/preflight tests | No browser-generated tribute headers; browser cold-offline loading depends on host asset caching/availability |
 | Linux x64 | Release bundle passed with clang 22.1.8, CMake 4.3.0, Ninja 1.13.2, GTK 3.24.52 | Process launched, renderer initialised, remained alive until planned eight-second termination; engine/widget/golden tests | ATK bridge and cursor-theme warnings observed; no complete native interaction/assistive-technology audit |
-| Android | Debug APK passed using installed SDK 37.0.0 / JDK 21.0.13 / Gradle 9.3.1 | Not run: user explicitly chose build-only validation | No install, launch, device forwarding, trust change or release/signing validation |
+| Android | Debug APK passed using installed SDK 37.0.0 / JDK 21.0.13 / Gradle 9.3.1 | Debug build installed and run on one physical Android 17 (API 37) phone over wireless debugging, by user instruction on 16 November 2026: gallery, detail, relay animation, backdrop and hot restart observed working; user confirmed the result | One device, debug mode only; no release/signing build, screen-reader (TalkBack) review, performance or cold-start measurement |
 | iOS | Not run; scaffold only | Not run | Requires macOS/Xcode, signing/simulator/device evidence |
 | macOS | Not run; scaffold only | Not run | Requires macOS/Xcode and desktop/network/assistive-technology evidence |
 | Windows | Not run; scaffold only | Not run | Requires Windows toolchain and runtime evidence |
@@ -19,7 +19,7 @@ From `apps/gnu_clacks_example`:
 - `flutter build linux --no-pub`
 - `flutter build apk --debug --no-pub`
 
-The read-only installed SDK was used through the temporary writable Flutter tool cache described in `VALIDATION.md`. Android used installed SDK/Gradle tooling and caches; no device deployment was authorised. The earlier sandboxed doctor/device check failed because ADB could not bind its local socket. A later authorised read-only device inventory succeeded; the user then explicitly declined installation/runtime testing. No device identifier is recorded here.
+The read-only installed SDK was used through the temporary writable Flutter tool cache described in `VALIDATION.md`. Android used installed SDK/Gradle tooling and caches; no device deployment was authorised. The earlier sandboxed doctor/device check failed because ADB could not bind its local socket. A later authorised read-only device inventory succeeded; the user initially declined installation/runtime testing, then on 16 November 2026 instructed a debug install and run on the device. That run found and fixed an Android-specific bug: Flutter reports accessible navigation whenever any accessibility service (for example a password manager) reads the screen, which had wrongly stopped the animation. No device identifier is recorded here.
 
 Build artifacts are local and ignored by source control:
 

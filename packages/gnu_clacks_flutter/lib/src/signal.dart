@@ -2,17 +2,30 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:gnu_clacks_core/gnu_clacks_core.dart';
 
 import 'localizations.dart';
 import 'theme.dart';
 
-/// Original, symbolic local animation. No alphabet encoding or network activity.
+/// Original local tower animation. No network activity.
+///
+/// With a [message], each character travels tower to tower from left to right,
+/// shown in the nine-lamp [ClacksLampCode]; as it reaches the last tower it is
+/// printed, respelling the message. Without one, a symbolic pulse is shown.
 ///
 /// Pauses with reduced motion, inactive app, TickerMode, viewport clipping or
 /// [active]=false. Hosts hiding content outside normal paint/scroll lifecycles
 /// should also set [active] false. A static equivalent always retains semantics.
 class ClacksSignal extends StatefulWidget {
-  const ClacksSignal({super.key, this.animate = true, this.active = true});
+  const ClacksSignal({
+    super.key,
+    this.message,
+    this.animate = true,
+    this.active = true,
+  });
+
+  /// Text relayed across the towers, such as a memorial's display name.
+  final String? message;
   final bool animate;
   final bool active;
   @override
@@ -29,6 +42,7 @@ class _ClacksSignalState extends State<ClacksSignal>
   bool _scheduled = false;
   bool _foreground = true;
   bool _allowed = false;
+  late _Relay? _relay = _Relay.of(widget.message);
 
   @override
   void initState() {
@@ -57,9 +71,12 @@ class _ClacksSignalState extends State<ClacksSignal>
       }
       return true;
     });
+    // Reduced motion is the only platform signal that stops the animation.
+    // accessibleNavigation is not used: on Android it turns on whenever any
+    // accessibility service (password managers, device-link apps) reads the
+    // screen. Screen readers already get one static label below.
     _allowed =
         !MediaQuery.disableAnimationsOf(context) &&
-        !MediaQuery.accessibleNavigationOf(context) &&
         TickerMode.valuesOf(context).enabled;
     _scheduleCheck();
   }
@@ -67,6 +84,11 @@ class _ClacksSignalState extends State<ClacksSignal>
   @override
   void didUpdateWidget(ClacksSignal oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (oldWidget.message != widget.message) {
+      _relay = _Relay.of(widget.message);
+      // Restart so the repeat period matches the new message length.
+      _controller?.stop();
+    }
     _scheduleCheck();
   }
 
@@ -142,10 +164,11 @@ class _ClacksSignalState extends State<ClacksSignal>
     if (shouldRun) {
       _controller ??= AnimationController(vsync: this)
         ..addListener(_checkVisibility);
-      final duration = ClacksTheme.of(context).signalPeriod;
-      _controller!.duration = duration.inMilliseconds >= 1000
-          ? duration
+      final period = ClacksTheme.of(context).signalPeriod;
+      final safePeriod = period.inMilliseconds >= 1000
+          ? period
           : const Duration(seconds: 4);
+      _controller!.duration = _relay?.cycle(safePeriod) ?? safePeriod;
       if (!_controller!.isAnimating) {
         _controller!.repeat();
         setState(() {});
@@ -171,38 +194,53 @@ class _ClacksSignalState extends State<ClacksSignal>
     final strings = ClacksLocalizations.of(context);
     final theme = ClacksTheme.of(context);
     final animation = _controller;
+    final relay = _relay;
+    final colour = theme.accentOn(theme.surface);
+
+    Widget painted(double progress) => CustomPaint(
+      painter: relay == null
+          ? TowerPainter(colour, progress)
+          : _RelayPainter(
+              colour,
+              relay,
+              animation == null ? null : relay.frame(progress),
+            ),
+    );
+
+    final towers = _PaintProbe(
+      onPaint: _scheduleCheck,
+      child: SizedBox(
+        key: _paintKey,
+        height: 112,
+        width: double.infinity,
+        child: animation == null
+            ? painted(0)
+            : AnimatedBuilder(
+                animation: animation,
+                builder: (context, child) => painted(animation.value),
+              ),
+      ),
+    );
+
     return ColoredBox(
       color: theme.surface,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Semantics(
-            label: strings.symbolicSignal,
+            label: relay == null
+                ? strings.symbolicSignal
+                : strings.relaySignal(widget.message!),
             child: ExcludeSemantics(
-              child: _PaintProbe(
-                onPaint: _scheduleCheck,
-                child: SizedBox(
-                  key: _paintKey,
-                  height: 112,
-                  width: double.infinity,
-                  child: animation == null
-                      ? CustomPaint(
-                          painter: TowerPainter(
-                            theme.accentOn(theme.surface),
-                            0,
-                          ),
-                        )
-                      : AnimatedBuilder(
-                          animation: animation,
-                          builder: (context, child) => CustomPaint(
-                            painter: TowerPainter(
-                              theme.accentOn(theme.surface),
-                              animation.value,
-                            ),
-                          ),
-                        ),
-                ),
-              ),
+              child: relay == null
+                  ? towers
+                  : _RelayLayout(
+                      relay: relay,
+                      animation: animation,
+                      towers: towers,
+                      ink: theme.ink(theme.surface),
+                      accent: colour,
+                    ),
             ),
           ),
           if (widget.animate && _allowed)
@@ -222,6 +260,285 @@ class _ClacksSignalState extends State<ClacksSignal>
       ),
     );
   }
+}
+
+/// Timeline for relaying a message across [towers] towers.
+///
+/// At step `s`, tower `k` shows character `s - k`, so several characters are in
+/// flight at once. A character is printed when it reaches the last tower. After
+/// the final character the whole message is held for [hold] steps.
+class _Relay {
+  _Relay(this.characters)
+    : patterns = [
+        for (final c in characters) ClacksLampCode.encode(c),
+        ClacksLampCode.end,
+      ];
+
+  static _Relay? of(String? message) {
+    final characters = message?.trim().characters.toList() ?? const [];
+    return characters.isEmpty ? null : _Relay(characters);
+  }
+
+  static const towers = 3;
+  static const hold = 3;
+  static const _minimumStep = Duration(milliseconds: 400);
+
+  /// The message's characters; the END signal follows as one extra token.
+  final List<String> characters;
+
+  /// Lamp pattern per token: one per character, then [ClacksLampCode.end].
+  final List<int?> patterns;
+
+  int get tokens => patterns.length;
+
+  int get steps => tokens + towers - 1 + hold;
+
+  /// One cycle; [period] is the time a character takes to cross every tower.
+  Duration cycle(Duration period) {
+    var step = period ~/ towers;
+    if (step < _minimumStep) step = _minimumStep;
+    return step * steps;
+  }
+
+  _RelayFrame frame(double progress) {
+    final position = progress.clamp(0.0, 1.0) * steps;
+    final step = math.min(position.floor(), steps - 1);
+    return _RelayFrame(
+      step: step,
+      phase: position - step,
+      towers: [
+        for (var k = 0; k < towers; k++)
+          step - k >= 0 && step - k < tokens ? step - k : null,
+      ],
+      printed: (step - towers + 2).clamp(0, tokens),
+      sending: step < tokens ? step : null,
+    );
+  }
+
+  /// At rest: the message fully respelled and the towers dark.
+  _RelayFrame get rest => _RelayFrame(
+    step: steps - 1,
+    phase: 0,
+    towers: const [null, null, null],
+    printed: tokens,
+    sending: null,
+  );
+}
+
+class _RelayFrame {
+  const _RelayFrame({
+    required this.step,
+    required this.phase,
+    required this.towers,
+    required this.printed,
+    required this.sending,
+  });
+  final int step;
+  final double phase;
+
+  /// Index of the character shown on each tower, left to right.
+  final List<int?> towers;
+
+  /// How many characters have arrived at the last tower.
+  final int printed;
+
+  /// Index of the character entering the first tower, if any.
+  final int? sending;
+}
+
+/// Name on the left, towers in the middle, respelled name on the right.
+/// Stacks vertically when there is not enough width.
+class _RelayLayout extends StatelessWidget {
+  const _RelayLayout({
+    required this.relay,
+    required this.animation,
+    required this.towers,
+    required this.ink,
+    required this.accent,
+  });
+  final _Relay relay;
+  final Animation<double>? animation;
+  final Widget towers;
+  final Color ink;
+  final Color accent;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = Theme.of(context).textTheme.titleMedium?.copyWith(color: ink);
+    final end = ClacksLocalizations.of(context).endSignal;
+    final endStyle = TextStyle(
+      fontSize: (style?.fontSize ?? 16) * .75,
+      letterSpacing: 1.5,
+      fontWeight: FontWeight.w600,
+    );
+
+    Widget text(bool source) {
+      TextStyle? stateOf(_RelayFrame frame, int i) => source
+          ? (i == frame.sending
+                ? TextStyle(color: accent, fontWeight: FontWeight.bold)
+                : null)
+          // Unprinted tokens keep their space, so the respelled name does
+          // not shift as it grows.
+          : (i < frame.printed
+                ? null
+                : const TextStyle(color: Color(0x00000000)));
+
+      Widget build(_RelayFrame frame) => Text.rich(
+        TextSpan(
+          children: [
+            for (var i = 0; i < relay.tokens; i++)
+              i < relay.characters.length
+                  ? TextSpan(
+                      text: relay.characters[i],
+                      style: stateOf(frame, i),
+                    )
+                  // END follows a no-break space, so it never wraps alone,
+                  // and is set small and letter-spaced as a signal.
+                  : TextSpan(
+                      text: '\u00a0$end',
+                      style: endStyle.merge(stateOf(frame, i)),
+                    ),
+          ],
+        ),
+        style: style,
+        textAlign: source ? TextAlign.start : TextAlign.end,
+        key: ValueKey(source ? 'clacks-source' : 'clacks-received'),
+      );
+      final controller = animation;
+      return controller == null
+          ? build(relay.rest)
+          : AnimatedBuilder(
+              animation: controller,
+              builder: (context, _) => build(relay.frame(controller.value)),
+            );
+    }
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth >= 560) {
+          return Row(
+            children: [
+              Expanded(flex: 2, child: text(true)),
+              const SizedBox(width: 12),
+              Expanded(flex: 5, child: towers),
+              const SizedBox(width: 12),
+              Expanded(flex: 2, child: text(false)),
+            ],
+          );
+        }
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: text(true),
+            ),
+            towers,
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: text(false),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+/// Original towers, each with a three-by-three lamp panel.
+class _RelayPainter extends CustomPainter {
+  const _RelayPainter(this.colour, this.relay, this.frame);
+  final Color colour;
+  final _Relay relay;
+
+  /// `null` paints the towers at rest with every lamp dark.
+  final _RelayFrame? frame;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final stroke = Paint()
+      ..color = colour
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
+      ..strokeCap = StrokeCap.round;
+    final scale = math.min(size.width / 320, size.height / 110);
+    canvas.save();
+    canvas.translate(
+      (size.width - 320 * scale) / 2,
+      (size.height - 110 * scale) / 2,
+    );
+    canvas.scale(scale);
+    final current = frame;
+    // Lamps settle quickly at the start of each step, then hold steady.
+    final settle = current == null
+        ? 1.0
+        : Curves.easeOut.transform(math.min(1, current.phase * 4));
+    for (var i = 0; i < _Relay.towers; i++) {
+      final x = 52.0 + i * 108;
+      stroke.color = colour;
+      canvas.drawLine(Offset(x - 16, 98), Offset(x - 12, 56), stroke);
+      canvas.drawLine(Offset(x + 16, 98), Offset(x + 12, 56), stroke);
+      canvas.drawLine(Offset(x - 12, 74), Offset(x + 12, 74), stroke);
+      canvas.drawLine(Offset(x - 14, 90), Offset(x + 14, 90), stroke);
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTRB(x - 24, 6, x + 24, 56),
+          const Radius.circular(3),
+        ),
+        stroke,
+      );
+      final index = current?.towers[i];
+      final pattern = index == null ? null : relay.patterns[index];
+      for (var lamp = 0; lamp < ClacksLampCode.lampCount; lamp++) {
+        final centre = Offset(
+          x + (lamp % ClacksLampCode.columns - 1) * 14,
+          17.0 + (lamp ~/ ClacksLampCode.columns) * 14,
+        );
+        // The centre lamp is reserved for END, so its rim is fainter.
+        final reserved = lamp == ClacksLampCode.centre;
+        final lit = pattern != null && ClacksLampCode.isLit(pattern, lamp);
+        canvas.drawCircle(
+          centre,
+          5,
+          Paint()
+            ..color = colour.withValues(alpha: lit ? .15 + .85 * settle : .12),
+        );
+        canvas.drawCircle(
+          centre,
+          5,
+          Paint()
+            ..color = colour.withValues(alpha: reserved ? .3 : .55)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1,
+        );
+      }
+      if (i < _Relay.towers - 1) {
+        final from = x + 26;
+        final to = x + 108 - 26;
+        canvas.drawLine(
+          Offset(from, 31),
+          Offset(to, 31),
+          stroke..color = colour.withValues(alpha: .35),
+        );
+        // A small pulse travels on towards the next tower.
+        if (current != null && index != null) {
+          canvas.drawCircle(
+            Offset(from + (to - from) * current.phase, 31),
+            2.5,
+            Paint()..color = colour.withValues(alpha: .8),
+          );
+        }
+      }
+    }
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(_RelayPainter oldDelegate) =>
+      oldDelegate.colour != colour ||
+      oldDelegate.relay != relay ||
+      oldDelegate.frame?.step != frame?.step ||
+      oldDelegate.frame?.phase != frame?.phase;
 }
 
 // Paint notification resumes a stopped signal when it becomes visible again.

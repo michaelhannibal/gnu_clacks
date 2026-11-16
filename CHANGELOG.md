@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- The private demo app now shows four superheroes (local demo only) with original illustrations, replacing its fictional entries; Tony Stark is the approved name for the localhost header demo. The umbrella package gains a tested, fictional, display-only example.
+- The Clacks signal on the detail screen now relays the memorial's name letter by letter across the towers in a nine-lamp code (8-bit ASCII on the outer ring, centre lamp for END only), followed by END, and respells it on the right (ADR-013).
 - Phase 0 rules accepted and closed by human instruction; remaining external evidence tracked separately.
 - Replaced the Flutter calculator scaffold with a private Dart workspace and Core development package.
 - Added immutable memorial models, validators, exact-origin policy, bounded header composition and tests.
